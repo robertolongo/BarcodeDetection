@@ -12,9 +12,13 @@ ROTATE_DEG = 0
 def read_barcode(current_image, angle):
 
     barcode_list = []
+    # Preprocess the image for a better detection
+    img = cv2.cvtColor(current_image, cv2.COLOR_BGR2GRAY) # convert to grayscale
+    img = cv2.threshold(img, 0, 255, cv2.THRESH_OTSU)[1]  # apply threshold
 
     # Rotation
-    img = imutils.rotate(current_image, angle=angle)
+    if angle:
+        img = imutils.rotate(img, angle=angle)
 
     # Extract the barcodes
     barcodes = decode(img)
@@ -48,7 +52,7 @@ document_image = cv2.imread(IMAGE_IN)
 image_rotated = imutils.rotate(document_image, angle=ROTATE_DEG)
 #image_rotated = imutils.rotate(image_rotated, angle=1)
 barcode_data = read_barcode(document_image, 0)
-#cv2.imwrite(IMAGE_OUT + r"\\" + barcode_data[0] + ".jpg",image_rotated)
+cv2.imwrite(IMAGE_OUT + r"\\" + barcode_data[0] + ".jpg",image_rotated)
 
 
 directory = os.fsencode(FOLDER_IN)
