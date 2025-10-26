@@ -3,12 +3,12 @@ import imutils
 from pyzbar.pyzbar import decode
 import os
 
-
+# Config - BEGIN
 IMAGE_IN = r"C:\Users\rober\PycharmProjects\BarcodeDetection\data_in\NON_LEGGIBILE_doc09836820250923153800_009.jpg"
-#IMAGE_IN = r"C:\Users\rober\PycharmProjects\BarcodeDetection\multi_barcode.jpg"
 FOLDER_OUT = r"C:\Users\rober\PycharmProjects\BarcodeDetection\data_out"
 FOLDER_IN = r"C:\Users\rober\PycharmProjects\BarcodeDetection\data_in"
 ROTATE_DEG = 0
+#Config - END
 
 def read_barcode(full_filename, angle):
 
